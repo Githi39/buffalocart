@@ -62,6 +62,11 @@ public LoginPage(WebDriver driver)
         page.clickOnElement(loginButton);
         return new HomePage(driver);
     }
+    public ResetPasswordPage clickOnForgotPassword()
+    {
+        page.clickOnElement(forgotPassword);
+        return new ResetPasswordPage(driver);
+    }
     public String getErrorMessage(){
         return page.getElementText(errorMessage);
     }
