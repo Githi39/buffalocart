@@ -21,6 +21,7 @@ public class HomePage extends TestHelpUtility {
         this.driver = driver;
         PageFactory.initElements(driver,this);
     }
+    /*** page Web Elements ***/
     private final String _userName = "//a[@class='dropdown-toggle']";
     @FindBy(xpath=_userName)
     private WebElement userName;
@@ -33,15 +34,11 @@ public class HomePage extends TestHelpUtility {
     @FindBy(xpath=_logoutButton)
     private WebElement logoutButton;
 
-    private final String _date = "//div[@class='m-8 pull-left mt-15 hidden-xs']//strong";
-    @FindBy(xpath=_date)
-    private WebElement date;
+    private final String _dateDisplayed="//div[@class='m-8 pull-left mt-15 hidden-xs']/strong";
+    @FindBy(xpath = _dateDisplayed) private WebElement dateDisplayed;
 
     /*** User Action Methods ***/
-    public String getUserName()
-    {
-        return page.getElementText(userName);
-    }
+    public String getUserName() {return page.getElementText(userName);}
     public void clickOnEndTourButton()
     {
         page.clickOnElement(endTourButton);
@@ -50,20 +47,8 @@ public class HomePage extends TestHelpUtility {
     {
         page.clickOnElement(userName);
     }
-    public String getHomePageActualTitle()
-    {
-        return page.getPageTitle(driver);
-    }
-
-    public String getExpectedDateInHomePage()
-    {
-        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-        Date date = new Date();
-        String todayDate = dateFormat.format(date);
-        return todayDate;
-    }
-    public String getActualDateInHomePage()
-    {
-        return page.getElementText(date);
-    }
+    public String getHomePageTitle() {return page.getPageTitle(driver);}
+    public String getActualDateInHomePage() {return page.getElementText(dateDisplayed);}
+    public String getDateDisplayedOnHomePage(){return page.getElementText(dateDisplayed);}
+    public String getSystemDate(){return dates.getDateOfSystem();}
 }

@@ -15,7 +15,8 @@ public class WaitUtility {
     {
         Id, Name, ClassName, Xpath, LinkText, PartialLinkText,TagName;
     }
-    public void waitForTheElementToBeVisible(WebDriver driver, String target, Enum locatertype) {
+
+    public void waitForTheElementToBeVisible(WebDriver driver, Enum locatertype, String target) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(EXPLICIT_WAIT));
         if(locatertype.equals(LocaterType.Id))
         {

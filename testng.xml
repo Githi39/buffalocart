@@ -21,6 +21,29 @@
                     <include name="verifyErrorMessageOnResetPasswordPage"/>
                 </methods>
             </class>
+            <class name="com.buffalocart.testscripts.HomePageTest">
+                <methods>
+                    <include name="verifyHomePageTitle"/>
+                    <include name="verifyDateInHomePage"/>
+                </methods>
+            </class>
+            <class name="com.buffalocart.testscripts.SignOutPageTest">
+                <methods>
+                    <include name="verifyTheNavigationOfSignOutButton"/>
+                </methods>
+            </class>
+            <class name="com.buffalocart.testscripts.UserManagementTest">
+                <methods>
+                    <include name="verifyUserManagementSubTabs"/>
+
+                </methods>
+            </class>
+            <class name="com.buffalocart.testscripts.UserPageTest">
+                <methods>
+                    <exclude name="verifyUsersPageTitle"/>
+
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>

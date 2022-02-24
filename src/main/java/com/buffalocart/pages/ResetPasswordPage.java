@@ -27,10 +27,7 @@ public class ResetPasswordPage extends TestHelpUtility {
     private final String _resetErrorMessage = "//span[@class='help-block']//strong";
     @FindBy(xpath=_resetErrorMessage)
     private WebElement resetErrorMessage;
-    public void recoverEmailToEnter(String recoverEmailToEnter)
-    {
-        page.EnterText(recoverEmailId,recoverEmailToEnter);
-    }
+    public void recoverEmailToEnter(String recoverEmailToEnter) {page.EnterText(recoverEmailId,recoverEmailToEnter);}
     public void clickOnResetPasswordButton()
     {
         page.clickOnElement(resetButton);

@@ -18,6 +18,7 @@ public LoginPage(WebDriver driver)
     this.driver=driver;
     PageFactory.initElements(driver,this);
 }
+    /*** page Web Elements ***/
     private final String _loginName = "username";
     @FindBy(id=_loginName)
     private WebElement loginName;
@@ -45,31 +46,18 @@ public LoginPage(WebDriver driver)
     {
         return page.getPageTitle(driver);
     }
-    public void enterUserName(String uname){
-        page.EnterText(loginName,uname);
-    }
+    public void enterUserName(String uname){page.EnterText(loginName,uname);}
     public void enterPassword(String pswd){
         page.EnterText(loginPassword,pswd);
     }
     public void clickOnRememberMeCheckBox(){
         page.clickOnElement(rememberMeCheckbox);
     }
-    public boolean rememberMeCheckBoxIsSelected(){
-        return page.getSelectedValue(rememberMeCheckbox);
-    }
-
-    public HomePage clickOnLoginButton(){
-        page.clickOnElement(loginButton);
-        return new HomePage(driver);
-    }
-    public ResetPasswordPage clickOnForgotPassword()
-    {
-        page.clickOnElement(forgotPassword);
-        return new ResetPasswordPage(driver);
-    }
+    public boolean rememberMeCheckBoxIsSelected(){return page.getSelectedValue(rememberMeCheckbox);}
+    public HomePage clickOnLoginButton(){page.clickOnElement(loginButton);return new HomePage(driver);}
+    public ResetPasswordPage clickOnForgotPassword() {page.clickOnElement(forgotPassword);return new ResetPasswordPage(driver);}
     public String getErrorMessage(){
         return page.getElementText(errorMessage);
     }
-
 
 }
