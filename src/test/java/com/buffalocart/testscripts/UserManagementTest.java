@@ -25,7 +25,7 @@ public class UserManagementTest extends Base {
     {
         extentTest.get().assignCategory("Regression");
         login = new LoginPage(driver);
-        home = new HomePage(driver);
+        //home = new HomePage(driver);
         userManagement = new UserManagementPage(driver);
         SignOutPage signOut = new SignOutPage(driver);
         List<List<String>> data = excel.excelDataReader("login");
@@ -43,7 +43,7 @@ public class UserManagementTest extends Base {
         List<String> actualTabValues = userManagement.getActualUserManagementListValues();
         System.out.println("act"+actualTabValues);
         extentTest.get().log(Status.PASS, "Actual user Management Tab values successfully captured");
-        List<List<String>>expectedTabValues = excel.excelDataReader("usermanagement");
+        List<String>expectedTabValues = excel.readDataFromExcel("usermanagement");
         System.out.println(expectedTabValues.size());
         System.out.println("exp"+expectedTabValues);
         Assert.assertEquals(actualTabValues,expectedTabValues,"ERROR:MOSMATCH FOUND");

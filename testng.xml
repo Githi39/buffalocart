@@ -25,6 +25,7 @@
                 <methods>
                     <include name="verifyHomePageTitle"/>
                     <include name="verifyDateInHomePage"/>
+                    <include name="verify_date_displayed_in_home_page"/>
                 </methods>
             </class>
             <class name="com.buffalocart.testscripts.SignOutPageTest">
@@ -35,13 +36,21 @@
             <class name="com.buffalocart.testscripts.UserManagementTest">
                 <methods>
                     <include name="verifyUserManagementSubTabs"/>
-
                 </methods>
             </class>
             <class name="com.buffalocart.testscripts.UserPageTest">
                 <methods>
-                    <exclude name="verifyUsersPageTitle"/>
-
+                    <include name="verifyUsersPageTitle"/>
+                    <include name="verifyUserSearchWithValidData"/>
+                    <include name="verifyMessageInUserSearchWithInvalidData"/>
+                </methods>
+            </class>
+            <class name="com.buffalocart.testscripts.AddUserTest">
+                <methods>
+                    <include name="verifyErrorMessageWithoutFillingMandatory"/>
+                    <include name="verifyUserLoginWithNewlyAddedUser"/>
+                    <include name="verifyAddUsersPageTitle"/>
+                    <include name="verifyUserCanAddUserDetails"/>
                 </methods>
             </class>
         </classes>

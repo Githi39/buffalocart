@@ -6,8 +6,10 @@ import com.buffalocart.automationcore.Base;
 import com.buffalocart.listeners.TestListener;
 import com.buffalocart.pages.HomePage;
 import com.buffalocart.pages.LoginPage;
+import com.buffalocart.utilities.DateUtility;
 import com.buffalocart.utilities.ExcelUtility;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -16,6 +18,7 @@ public class HomePageTest extends Base{
     LoginPage login;
     HomePage home;
     ExcelUtility excel =new ExcelUtility();
+    DateUtility date=new DateUtility();
     ThreadLocal<ExtentTest> extentTest = TestListener.getTestInstance();
     @Test(priority = 6,description = "TC_006_Verify Home page title")
     public void verifyHomePageTitle() {
@@ -40,10 +43,7 @@ public class HomePageTest extends Base{
         extentTest.get().log(Status.PASS, "verify home page title test case passed");
     }
     @Test(priority = 7,description = "TC_007_Verify date displayed in home page")
-    public void verifyDateInHomePage()
-    {
-        extentTest.get().assignCategory("Regression");
-        //home=new HomePage(driver);
+    public void verify_date_displayed_in_home_page(){
         login=new LoginPage(driver);
         List<List<String>> data = excel.excelDataReader("login");
         String uname = data.get(1).get(1);
@@ -54,13 +54,11 @@ public class HomePageTest extends Base{
         extentTest.get().log(Status.PASS, "Password entered successfully");
         home = login.clickOnLoginButton();
         extentTest.get().log(Status.PASS, "clicked on login button successfully");
-        List<List<String>> data2 = excel.excelDataReader("homepage");
-        String actualDate = home.getActualDateInHomePage();
-        extentTest.get().log(Status.PASS, "Actual date is captured");
-        String expectedDate=data2.get(1).get(1);
-        extentTest.get().log(Status.PASS, "expected date is captured");
-        Assert.assertEquals(actualDate,expectedDate,"ERROR : MISMATCH FOUND IN DATE DISPLAYED IN HOME PAGE");
-        extentTest.get().log(Status.PASS, "Verify date displayed in home page test case is passed");
+        String actualDate=home.getDateDisplayedOnHomePage();
+        String expectedDate= home.getSystemDate();
+        Assert.assertEquals(actualDate,expectedDate,"ERROR ::Not current Date");
+        extentTest.get().log(Status.PASS, "verify date displayed in home page passed");
     }
+
     }
 

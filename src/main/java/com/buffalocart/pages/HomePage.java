@@ -2,6 +2,7 @@ package com.buffalocart.pages;
 
 import com.buffalocart.constants.Constants;
 import com.buffalocart.utilities.TestHelpUtility;
+import com.buffalocart.utilities.WaitUtility;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -37,18 +38,27 @@ public class HomePage extends TestHelpUtility {
     private final String _dateDisplayed="//div[@class='m-8 pull-left mt-15 hidden-xs']/strong";
     @FindBy(xpath = _dateDisplayed) private WebElement dateDisplayed;
 
+
     /*** User Action Methods ***/
-    public String getUserName() {return page.getElementText(userName);}
+    public String getUserName()
+    {wait.waitForTheElementToBeVisible(driver, WaitUtility.LocaterType.Xpath, _userName);
+        return page.getElementText(userName);}
     public void clickOnEndTourButton()
     {
         page.clickOnElement(endTourButton);
     }
     public void clickOnUserName()
     {
+        wait.waitForTheElementToBeVisible(driver, WaitUtility.LocaterType.Xpath, _userName);
         page.clickOnElement(userName);
     }
     public String getHomePageTitle() {return page.getPageTitle(driver);}
-    public String getActualDateInHomePage() {return page.getElementText(dateDisplayed);}
-    public String getDateDisplayedOnHomePage(){return page.getElementText(dateDisplayed);}
-    public String getSystemDate(){return dates.getDateOfSystem();}
+    //public String getActualDateInHomePage() {return page.getElementText(dateDisplayed);}
+    public String getDateDisplayedOnHomePage(){
+        return page.getElementText(dateDisplayed);
+    }
+    public String getSystemDate(){
+        return dates.getDateOfSystem();
+    }
+
 }

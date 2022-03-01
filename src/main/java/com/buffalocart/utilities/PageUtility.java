@@ -22,6 +22,9 @@ public class PageUtility {
     public String getElementText(WebElement element) {
         return element.getText();
     }
+    public List<WebElement> getWebElementList(WebDriver driver,String xpath){
+        return driver.findElements(By.xpath(xpath));
+    }
 
     public String getAttributeValue(WebElement element, String attribute) {
         return element.getAttribute(attribute);

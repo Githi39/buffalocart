@@ -41,7 +41,6 @@ public class SignOutPageTest extends Base {
         home.clickOnUserName();
         extentTest.get().log(Status.PASS, "Successfully clicked on username");
         login = signOut.clickOnSignout();
-        //Thread.sleep(3000);
         String actualTitle = login.getLoginPageActualTitle();
         String expectedTitle = data.get(1).get(0);
         extentTest.get().log(Status.PASS, "Expected login page title generated");

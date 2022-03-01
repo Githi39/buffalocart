@@ -22,6 +22,9 @@ public class SignOutPage extends TestHelpUtility {
     private WebElement signoutButton;
 
     /*** User Action Methods ***/
-    public LoginPage clickOnSignout() throws IOException {page.clickOnElement(signoutButton);return new LoginPage(driver);
+    public LoginPage clickOnSignout() throws IOException
+    {
+        page.clickOnElement(signoutButton);
+        return new LoginPage(driver);
     }
 }
