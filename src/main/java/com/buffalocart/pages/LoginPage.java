@@ -1,28 +1,20 @@
 package com.buffalocart.pages;
-
-import com.buffalocart.constants.Constants;
 import com.buffalocart.utilities.TestHelpUtility;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
-import java.io.IOException;
-import java.util.List;
-
 public class LoginPage extends TestHelpUtility {
 WebDriver driver;
-    /*** Page Constructor ***/
+    /**page constructor **/
 public LoginPage(WebDriver driver)
-{
-    this.driver=driver;
+{this.driver=driver;
     PageFactory.initElements(driver,this);
 }
-    /*** page Web Elements ***/
+    /**page elements **/
     private final String _loginName = "username";
     @FindBy(id=_loginName)
     private WebElement loginName;
-
     private final String _loginPassword = "password";
     @FindBy(id=_loginPassword)
     private WebElement loginPassword;
@@ -32,16 +24,13 @@ public LoginPage(WebDriver driver)
     private final String _errorMessage = "//span[@class='help-block']//strong";
     @FindBy(xpath=_errorMessage)
     private WebElement errorMessage;
-
     private final String _rememberMeCheckbox = "//div[@class='checkbox']//input";
     @FindBy(xpath=_rememberMeCheckbox)
     private WebElement rememberMeCheckbox;
-
     private final String _forgotPassword = "//a[@class='btn btn-link']";
     @FindBy(xpath=_forgotPassword)
     private WebElement forgotPassword;
-    /*** User action methods ***/
-
+    /**user action method **/
     public String getLoginPageActualTitle()
     {
         return page.getPageTitle(driver);

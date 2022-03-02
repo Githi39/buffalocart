@@ -50,7 +50,6 @@
                     <include name="verifyErrorMessageWithoutFillingMandatory"/>
                     <include name="verifyUserLoginWithNewlyAddedUser"/>
                     <include name="verifyAddUsersPageTitle"/>
-                    <include name="verifyUserCanAddUserDetails"/>
                 </methods>
             </class>
         </classes>

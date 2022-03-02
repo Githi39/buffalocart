@@ -3,6 +3,7 @@ package com.buffalocart.pages;
 import com.buffalocart.utilities.TableUtility;
 import com.buffalocart.utilities.TestHelpUtility;
 import com.buffalocart.utilities.WaitUtility;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,13 +15,15 @@ import java.util.List;
 
 public class UsersPage extends TestHelpUtility {
     WebDriver driver;
+    boolean values;
     /*** Class Constructor ***/
-    public UsersPage(WebDriver driver)
-    {
+    public UsersPage(WebDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(driver,this);
+        PageFactory.initElements(driver, this);
     }
+
     List<List<String>> datauser = excel.excelDataReader("userpage");
+    TableUtility tableUtility=new TableUtility();
     private final String _searchBox = "//input[@class='form-control input-sm']";
     @FindBy(xpath = _searchBox)
     private WebElement searchBox;
@@ -33,9 +36,21 @@ public class UsersPage extends TestHelpUtility {
     private final String _addUserButton = "//a[@class='btn btn-block btn-primary']";
     @FindBy(xpath = _addUserButton)
     private WebElement addUserButton;
+    private final String _editButton = "//a[@class='btn btn-xs btn-primary']";
+    @FindBy(xpath = _editButton)
+    WebElement editButton;
+
+    private final String _deleteButton = "//button[@class='btn btn-xs btn-danger delete_user_button']";
+    @FindBy(xpath = _deleteButton)
+    private WebElement deleteButton;
+
+    private final String _viewButton = "//a[@class='btn btn-xs btn-info']";
+    @FindBy(xpath = _viewButton)
+    private WebElement viewButton;
     public String getActualUsersPageTitle() {
         return page.getPageTitle(driver);
     }
+
     private final String _rowElement = "//table[@id='users_table']//tbody//tr";
     @FindBy(xpath = _rowElement)
     private List<WebElement> rowElement;
@@ -44,9 +59,11 @@ public class UsersPage extends TestHelpUtility {
     @FindBy(xpath = _colElement)
     private List<WebElement> colElement;
 
+
     public void enterDataOnSearchBox(String dataToEnter) {
         page.EnterText(searchBox, dataToEnter);
     }
+
     public String getActualSearchData() {
         //wait.setExplicitWait(driver);
         wait.waitForTheElementToBeVisible(driver, WaitUtility.LocaterType.Xpath, _searchResult);
@@ -60,6 +77,7 @@ public class UsersPage extends TestHelpUtility {
             return " ";
         }
     }
+
     public String getInvalidSearchData() {
         return datauser.get(1).get(2);
     }
@@ -72,22 +90,14 @@ public class UsersPage extends TestHelpUtility {
         wait.waitForTheElementToBeVisible(driver, WaitUtility.LocaterType.Xpath, _searchMessage);
         return page.getElementText(searchMessage);
     }
+
     public AddUserPage clickOnAddUsersButton() throws IOException {
         page.clickOnElement(addUserButton);
         return new AddUserPage(driver);
     }
-    public List<ArrayList<String>> getTableData() {
-        return TableUtility.getGridData(rowElement, colElement);
 
-    }
 
-    public boolean getTableContainsData(List<ArrayList<String>> tableData, String expectedUserName) {
-        boolean status = false;
-        for (int i = 0; i < tableData.size(); i++)
-            if (tableData.get(i).contains(expectedUserName)) {
-                status = true;
-            }
-        return status;
-    }
-    }
+
+
+}
 

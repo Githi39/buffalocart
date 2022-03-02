@@ -152,54 +152,5 @@ public class AddUserTest extends Base {
         softAssert.assertAll();
         extentTest.get().log(Status.PASS, "Verify Add Users page title test case passed");
     }
-    @Test(priority = 16,enabled = true,description = "TC_016_Verify  user can add user details",groups = {"Smoke","Sanity","Regression"})
-    public void verifyUserCanAddUserDetails() throws IOException, InterruptedException {
-        extentTest.get().assignCategory("Smoke");
-        extentTest.get().assignCategory("Sanity");
-        extentTest.get().assignCategory("Regression");
-        login = new LoginPage(driver);
-        userManagement = new UserManagementPage(driver);
-        users = new UsersPage(driver);
-        home = new HomePage(driver);
-        signOut = new SignOutPage(driver);
-        addUser = new AddUserPage(driver);
-        softAssert = new SoftAssert();
-        List<List<String>> data = excel.excelDataReader("login");
-        String uname = data.get(1).get(1);
-        login.enterUserName(uname);
-        extentTest.get().log(Status.PASS, "User name entered successfully");
-        String psd = data.get(1).get(2);
-        login.enterPassword(psd);
-        extentTest.get().log(Status.PASS, "Password entered successfully");
-        login.clickOnLoginButton();
-        extentTest.get().log(Status.PASS, "Successfully Logged in");
-        home.clickOnEndTourButton();
-        userManagement.clickOnUserManagementTab();
-        users = userManagement.clickOnUserMenu();
-        extentTest.get().log(Status.PASS, "Successfully clicked on users tab");
-        addUser = users.clickOnAddUsersButton();
-        extentTest.get().log(Status.PASS, "Successfully navigated to add users page");
-        addUser.enterPrefix(addUser.getPrefix());
-        addUser.enterFirstName(addUser.getFirstName());
-        addUser.enterLastName(addUser.getLastName());
-        addUser.enterEmail(addUser.getEmail());
-        addUser.getRoles();
-        addUser.enterUserName(addUser.getUserName());
-        addUser.enterPassword(addUser.getPassword());
-        addUser.enterConfirmPassWord(addUser.getConfirmPassword());
-        extentTest.get().log(Status.PASS, "Successfully entered the user details");
-        users = addUser.clickOnSaveButton();
-        extentTest.get().log(Status.PASS, "Successfully clicked on save button");
-        Thread.sleep(8000);
-        String userName = addUser.getUserName();
-        List<ArrayList<String>> tableData = users.getTableData();
-        boolean status = users.getTableContainsData(tableData,userName);
-        softAssert.assertTrue(status,"ERROR : INVALID USER");
-        extentTest.get().log(Status.PASS, "User can successfully add details");
-        home.clickOnUserName();
-        login = signOut.clickOnSignout();
-        softAssert.assertAll();
-        extentTest.get().log(Status.PASS, "Verify user login with newly added user test passed");
-    }
 
 }

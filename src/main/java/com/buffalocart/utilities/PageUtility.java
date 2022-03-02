@@ -18,6 +18,9 @@ public class PageUtility {
     public void EnterText(WebElement element, String value) {
         element.sendKeys(value);
     }
+    public void clearText(WebElement element){
+        element.clear();
+    }
 
     public String getElementText(WebElement element) {
         return element.getText();
